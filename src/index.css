@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+body {
+  margin: 0;
+  width: 100%;
+}
+
+li {
+    margin-right: 0.5%;
+}
+
+html {
+    height: 100%;
+    font-size: 100%;
+    font-family: 'Quicksand', sans-serif;
+    background: rgb(13,13,13);
+    background: linear-gradient(142deg, rgba(13,13,13,1) 0%, rgba(50,50,50,1) 100%);
+}
+
+.App {
+    margin: 0 auto;
+    padding: 0.6em 6em 8em;
+    height: 100%;
+    color: #d9a566;
+    background: rgba(113,113,113,1);
+    background: linear-gradient(142deg, rgba(113,113,113,1) 0%, rgba(50,50,50,1) 100%);
+    background-size: cover;
+}
+
+h1 {
+    font-size: 5em;
+    font-weight: 100;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 4em;
+    font-weight: 100;
+    margin: 2% 0;
+}
+
+h3 {
+    font-size: 2.6rem;
+    font-weight: 200;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+
+p {
+    font-size: 1.2em;
+    font-weight: normal;
+    color: #fff6e6;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: inline;
+    margin-right: 2%;
+}
+
+li a {
+    text-decoration: none;
+    color: #fff6e6;
+    font-size: 1.4em;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+a.edit {
+    padding: 1%;
+    background-color: #d9a566;
+    color: rgb(13,13,13);
+    border-radius: 5%;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navBar {
+    padding-bottom: 1%;
+    border-bottom: 2px groove #fff6e6;
+}
+
+.weeks {
+    padding-bottom: 1%;
+    border-bottom: 1px groove #A66F3F;
+}
+
+.fpageDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left {
+    width: 60%;
+}
+
+.right {
+    width: 35%;
+    min-width: 350px;
+    align-self: center;
+}
+
+.frontimg {
+    width: 100%;
+}
+
+.content a {
+    color: #d9a566;
+}
+
+.content a:visited {
+    color: #DB823B;
+}
+
+.content h2 {
+    font-size: 2.2em;
+}
+
+.content h3 {
+    font-size: 2em;
+}
+
+input[type=submit] {
+    margin: 1% 0;
+    padding: 0.5%;
+}
+
+input[type=password],
+input[type=text] {
+    margin: 1% 0;
+    padding: 0.5% 5% 0.5% 0.5%;
+}
+
+/* CHAT */
+
+#all_msg {
+    border: 1px solid #db823B;
+    padding: 5%;
+    margin-bottom: 2%;
+}
+
+.msg_text {
+    margin: 2% 0 2% 5%;
+}
+
+.chaterror {
+    color: red;
+}
+
+.smalli {
+    font-size: 80%;
+}
+
+.chatbutton {
+    margin-left: 88.3%;
+    background-color: transparent;
+    color: #d9a566;
+    border: 1px solid #d9a566;
+    padding: 1%;
+    font-size: 80%;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1000px) {
+    .fpageDiv {
+        flex-direction: column;
+    }
+    .left {
+        width: 80%;
+    }
+}
