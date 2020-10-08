@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 
 import {
   Switch,
@@ -94,18 +94,16 @@ class Product extends Component {
       if (auth.token) {
           return (
               <main>
-                  <Link className={"edit"} to={`/marketplace/edit/${this.props.match.params.nr}`}>Editera</Link>
                   <div className={"content"} >
-                    <h3>{`Rapport för vecka ${this.props.match.params.nr}`}</h3>
-                    <ReactMarkdown source={this.state.data} />
+                    <h3>{`Inloggad`}</h3>
+
                   </div>
               </main>
           )
       }
       return (
           <div className={"content"} >
-            <h3>{`Rapport för vecka ${this.props.match.params.nr}`}</h3>
-            <ReactMarkdown source={this.state.data} />
+            <h3>{`Inte inloggad`}</h3>
           </div>
       )
   }
@@ -148,18 +146,17 @@ class Market extends Component {
       if (auth.token) {
           return (
               <main>
-                  <Link className={"edit"} to={`/marketplace/edit/${this.props.match.params.nr}`}>Editera</Link>
-                  <div className={"content"} >
-                    <h3>{`Rapport för vecka`}</h3>
-                    <ReactMarkdown source={this.state.data} />
-                  </div>
+                    <div>
+                    <p>Inloggad</p>
+                    </div>
               </main>
           )
       }
       return (
           <div className={"content"} >
-            <h3>{`Rapport för vecka `}</h3>
+            <h3>{`Rapport för vecka`}</h3>
             <p>{this.state.objects} </p>
+            <p>inte inloggad</p>
           </div>
       )
   }

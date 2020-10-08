@@ -17,6 +17,7 @@ class Login extends Component {
         };
   }
 
+// submithandler fixed so that username and balance is saved in auth
   submitHandler = (event) => {
       event.preventDefault();
       const baseURL = process.env.NODE_ENV === "development"
@@ -39,9 +40,13 @@ class Login extends Component {
         .then(data => {
             if (data.data) {
                 auth.token = data.data.token;
+                auth.username = data.data.username;
+                auth.balance = data.data.balance;
                 this.setState({ msg: 'Login successful'});
             } else if (data.errors) {
                 auth.token = "";
+                auth.username = "";
+                auth.balance = "";
                 this.setState({ msg: data.errors.detail });
             }
         })

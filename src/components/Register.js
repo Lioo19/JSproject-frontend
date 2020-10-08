@@ -22,9 +22,11 @@ class Register extends Component {
 
       let payload={
           'email': this.state.email,
-          'password': this.state.password
+          'password': this.state.password,
+          'username': this.state.username
       }
 
+      console.log(payload);
       fetch(baseURL, {
           method: 'POST',
           headers: {
@@ -33,14 +35,14 @@ class Register extends Component {
           body: JSON.stringify(payload)
       })
         .then(response => response.json())
+        .catch((error) => {
+            console.error('Error: ', error);
+        })
         .then(data => {
             console.log('success, ', data);
             //creates a redirect to login site
             this.setState({ redirect: '/login'});
         })
-        .catch((error) => {
-            console.error('Error: ', error);
-        });
   };
 
   changeHandler = (event) => {
@@ -58,6 +60,15 @@ class Register extends Component {
             <h3>Registrera dig</h3>
 
             <form onSubmit={this.submitHandler}>
+                <label>Choose username </label>
+                <br/>
+                <input
+                    type='text'
+                    name='username'
+                    required
+                    onChange={this.changeHandler}
+                />
+                <br/>
                 <label>Enter email </label>
                 <br/>
                 <input

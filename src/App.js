@@ -27,7 +27,7 @@ export default function App() {
   if (auth.token) {
       return (
           <Router>
-            <div  className="App">
+            <div className="App">
               <ul className="navBar">
                 <li>
                   <Link to="/">Home</Link>
@@ -36,17 +36,11 @@ export default function App() {
                   <Link to="/marketplace">Market</Link>
                 </li>
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profile">{auth.username}</Link>
                 </li>
               </ul>
 
               <Switch>
-                <Route path="/login">
-                  <Login />
-                </Route>
-                <Route path="/register">
-                  <Register />
-                </Route>
                 <Route path="/marketplace">
                   <Marketplace />
                 </Route>
@@ -86,9 +80,6 @@ export default function App() {
           </Route>
           <Route path="/marketplace">
             <Marketplace />
-          </Route>
-          <Route path="/profile">
-            <Register />
           </Route>
           <Route exact path="/">
             <Home />

@@ -1,6 +1,8 @@
 
 let auth = {
-    token: ""
+    token: "",
+    username: "",
+    balance: null
 }
 
 export { auth };
