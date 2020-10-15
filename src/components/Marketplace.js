@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import {
   Switch,
   Route,
-  Link,
+ /* Link, */
   useRouteMatch
 } from "react-router-dom";
 
@@ -21,12 +21,15 @@ function Marketplace() {
   // The `path` lets us build <Route> paths that are
   // relative to the parent route, while the `url` lets
   // us build relative links.
-  let { path, url } = useRouteMatch();
+  let {
+      path,
+      /* url */
+  } = useRouteMatch();
 
   return (
     <div>
-      <h2>Rapporter</h2>
-      <ul className="products">
+      <h2>Marketplace</h2>
+      {/*<ul className="marketplace">
         <li>
           <Link to={`${url}/product/1`}>Product 1</Link>
         </li>
@@ -46,10 +49,10 @@ function Marketplace() {
           <Link to={`${url}/product/6`}>Product 6</Link>
         </li>
       </ul>
-
+      */}
       <Switch>
         <Route exact path={path}>
-          <h4>För att läsa en rapport, välj vecka ovan</h4>
+          {/*<h4>För att läsa en rapport, välj vecka ovan</h4>*/}
           {/* om jag vill ta bort från report startpage*/}
           <Market />
         </Route>
@@ -91,6 +94,10 @@ class Product extends Component {
   }
 
   render() {
+      let {
+          path,
+          /* url */
+      } = useRouteMatch();
       if (auth.token) {
           return (
               <main>
@@ -127,8 +134,7 @@ class Market extends Component {
           .then(response => response.json())
           .then(data => {
               console.log(data);
-              this.setState({ objects: data.data });
-              // console.log(this.state.objects[0]);
+              this.setState({ objects: data, data: "hejsan" });
           });
   };
 
@@ -143,20 +149,41 @@ class Market extends Component {
   // }
 
   render() {
+      const { objects } = this.state;
+
       if (auth.token) {
           return (
-              <main>
-                    <div>
-                    <p>Inloggad</p>
-                    </div>
-              </main>
+              <div className={"content"} >
+                {objects.map(object =>
+                    <li key={object.nr}>
+                        <a href={`marketplace/product/${object.nr}`}>
+                            <figure className={"objectCard"}>
+                                <img src={require(`../img/${object.img}`)} className={"thumb"}/>
+                                <p>{object.name}</p>
+                                <p>{object.latin}</p>
+                                <button>Hejsan</button>
+                            </figure>
+                        </a>
+                    </li>
+                )}
+                <p>Inloggad</p>
+              </div>
           )
       }
       return (
           <div className={"content"} >
-            <h3>{`Rapport för vecka`}</h3>
-            <p>{this.state.objects} </p>
-            <p>inte inloggad</p>
+            {objects.map(object =>
+                <li key={object.nr}>
+                    <a href={`marketplace/product/${object.nr}`}>
+                        <figure className={"objectCard"}>
+                            <img src={require(`../img/${object.img}`)} className={"thumb"}/>
+                            <p>{object.name}</p>
+                            <p>{object.latin}</p>
+                        </figure>
+                    </a>
+                </li>
+            )}
+            <p>Inte inloggad</p>
           </div>
       )
   }

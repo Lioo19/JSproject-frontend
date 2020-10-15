@@ -160,15 +160,35 @@ input[type=text] {
     font-size: 80%;
 }
 
-.chatbutton {
-    margin-left: 88.3%;
-    background-color: transparent;
-    color: #d9a566;
-    border: 1px solid #d9a566;
-    padding: 1%;
-    font-size: 80%;
-    text-decoration: underline;
+figure.objectCard {
+    display: inline-block;
+    overflow: hidden;
+    background-color: #efefef;
+    padding: 5px;
+    margin: 8px;
+    width: 300px;
+    height: 300px;
+    text-decoration: none;
+    box-shadow: 0 0 15px 1px #aaa;
+    transition: box-shadow .15s ease;
 }
+
+figure.objectCard img {
+    margin-left: 17.5%;
+    margin-top: 5%;
+}
+
+img.thumb {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+figure.objectCard p {
+    color: black;
+    margin: 0;
+    text-align: center;
+}
+
 
 @media screen and (max-width: 1000px) {
     .fpageDiv {

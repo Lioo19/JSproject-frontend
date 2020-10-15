@@ -67,7 +67,7 @@ class Login extends Component {
       }
       return (
           <main>
-              <h2>Logga In</h2>
+              <h2>Login</h2>
               <p className={"infomsg"}>{this.state.msg}</p>
               <form onSubmit={this.submitHandler}>
                   <label>Enter email </label>
