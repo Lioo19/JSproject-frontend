@@ -32,7 +32,7 @@ export default function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/marketplace" component={Marketplace} />
-          <Route path="/profile/:userId" component={Profile} />
+          <Route path="/profile" component={Profile} />
           <Route exact path="/" component={Home} />
         </Switch>
       </div>

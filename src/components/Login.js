@@ -42,7 +42,7 @@ class Login extends Component {
                 auth.token = data.data.token;
                 auth.username = data.data.username;
                 auth.balance = data.data.balance;
-                this.setState({ msg: 'Login successful'});
+                this.setState({ msg: 'Login successful', redirect: '/profile'});
             } else if (data.errors) {
                 auth.token = "";
                 auth.username = "";

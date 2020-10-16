@@ -207,6 +207,12 @@ figure.objectCardLarge img {
     margin-top: 5%;
 }
 
+.profile {
+    background-color: red;
+    width: 30%;
+    margin-left: 35%;
+}
+
 
 @media screen and (max-width: 1000px) {
     .fpageDiv {

@@ -63,9 +63,9 @@ class Product extends Component {
                   console.log("this is auth" + auth.token)
               }{
                   auth.token ?
-                  <h3>{`Inloggad`}</h3>
+                  <p>{`Inloggad`}</p>
                   :
-                  <h3>{`Inte inloggad`}</h3>
+                  <p>{`Inte inloggad`}</p>
               }
           </div>
       )
