@@ -183,10 +183,28 @@ img.thumb {
     max-height: 200px;
 }
 
-figure.objectCard p {
+figure p {
     color: black;
     margin: 0;
     text-align: center;
+}
+
+figure.objectCardLarge {
+    display: inline-block;
+    overflow: hidden;
+    background-color: #efefef;
+    padding: 5px;
+    margin: 8px;
+    width: 300px;
+    height: 300px;
+    text-decoration: none;
+    box-shadow: 0 0 15px 1px #aaa;
+    transition: box-shadow .15s ease;
+}
+
+figure.objectCardLarge img {
+    margin-left: 17.5%;
+    margin-top: 5%;
 }
 
 
