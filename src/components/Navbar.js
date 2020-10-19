@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 
 
 //Växling mellan inloggning funkar inte just nu, kolla på detta senare
+//importera auth för att kunna lägga relativ route för användare? Nödvändigt?
 class Navbar extends Component {
   render() {
     return (
@@ -22,7 +23,7 @@ class Navbar extends Component {
               <Link to="/login">Logga in</Link>
             </li>
             <li>
-              <Link to="/profile/:id">Profil</Link>
+              <Link to="/profile/ß">Profil</Link>
             </li>
           </nav>
          </div>

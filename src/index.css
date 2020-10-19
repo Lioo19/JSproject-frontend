@@ -167,7 +167,7 @@ figure.objectCard {
     padding: 5px;
     margin: 8px;
     width: 300px;
-    height: 300px;
+    height: 350px;
     text-decoration: none;
     box-shadow: 0 0 15px 1px #aaa;
     transition: box-shadow .15s ease;
@@ -196,7 +196,7 @@ figure.objectCardLarge {
     padding: 5px;
     margin: 8px;
     width: 300px;
-    height: 300px;
+    height: 350px;
     text-decoration: none;
     box-shadow: 0 0 15px 1px #aaa;
     transition: box-shadow .15s ease;

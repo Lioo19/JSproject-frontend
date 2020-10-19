@@ -42,24 +42,62 @@ function Marketplace() {
 }
 
 class Market extends Component {
-  // The <Route> that rendered this component has a
-  // path of `/Marketplace/:ReportId`. The `:ReportId` portion
-  // of the URL indicates a placeholder that we can
-  // get from `useParams()`.
   constructor() {
       super();
       this.state = {
+          username: auth.username,
+          balance: auth.balance,
           data: "",
           objects: []
       };
   }
 
+  //gets all objects with user=none
   componentDidMount() {
       fetch(baseURL)
           .then(response => response.json())
           .then(data => {
               this.setState({ objects: data });
           });
+  };
+
+  // Handler for buying each individual Product
+  // when socket's done, it should decide the price
+  buyHandler = (event) => {
+      event.preventDefault();
+      const baseURL = process.env.NODE_ENV === "development"
+          ? `http://localhost:1337/marketplace/buy/${event.target[0].value}`
+          : `https://me-api.linneaolofsson.me/marketplace/buy/${event.target[0].value}`;
+
+      //amount should be set with the socket-value
+      let payload={
+          'nr': event.target[0].value,
+          'who': this.state.username,
+          'amount': 10
+      }
+
+      if (this.state.username.length !== 0) {
+          fetch(baseURL, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'x-access-token': `${auth.token}`
+              },
+              body: JSON.stringify(payload)
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log(data);
+              this.setState({ msg: "Objekt Köpt" });
+          })
+          .catch((error) => {
+              console.error('Error: ', error);
+              this.setState({ msg: "Något gick fel med ditt köp, försök igen"});
+          });
+      } else {
+          this.setState({ msg: "Något gick fel med ditt köp, försök igen"});
+      }
+
   };
 
   render() {
@@ -83,7 +121,19 @@ class Market extends Component {
                             <p>{object.name}</p>
                             <p>{object.latin}</p>
                             {auth.token ?
-                                <button>Hejsan</button>
+                                <>
+                                <form onSubmit={this.buyHandler}>
+                                <input
+                                    type="hidden"
+                                    name="nr"
+                                    value={object.nr}
+                                    />
+                                    <input
+                                        type="submit"
+                                        value="köp"
+                                    />
+                                </form>
+                                </>
                             :
                             <p>V för kostnad</p>
                         }
