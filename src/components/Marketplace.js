@@ -8,8 +8,8 @@ import {
   useRouteMatch
 } from "react-router-dom";
 
-// import { Edit } from "./Edit.js";
-// import { Newpost } from "./Newpost.js";
+import io from "socket.io-client";
+
 import { auth } from "./Auth.js";
 import { Product } from "./Product.js";
 
@@ -17,6 +17,9 @@ const baseURL = process.env.NODE_ENV === "development"
     ? "http://localhost:1337/marketplace/"
     : "https://me-api.linneaolofsson.me/marketplace/";
 
+const socketURL = process.env.NODE_ENV === "development"
+    ? "http://localhost:8300/"
+    : "https://project-socket.linneaolofsson.me";
 
 function Marketplace() {
   // The `path` lets us build <Route> paths that are
@@ -31,7 +34,7 @@ function Marketplace() {
     <div>
       <Switch>
         <Route exact path={path}>
-          <h2>Marketplace</h2>
+          <h1>Marknad</h1>
           <Market />
         </Route>
         <Route path={`${path}/product/:nr`} component={Product}>
@@ -48,17 +51,44 @@ class Market extends Component {
           username: auth.username,
           balance: auth.balance,
           data: "",
-          objects: []
+          objects: [],
+          prices: []
       };
+
+      // this.socket = io(socketURL)
   }
 
   //gets all objects with user=none
+  //Every time the component mounts, should there be an update in price? more often?
   componentDidMount() {
       fetch(baseURL)
           .then(response => response.json())
           .then(data => {
               this.setState({ objects: data });
           });
+      //
+      // this.socket.on('test', () => {
+      //     console.log("connected")
+      // });
+
+      //adderar currentkakor till prices, CHECK
+      //Hur gör jag för att skicka mina växter till socketen?
+      //var vill jag lägga infon om priserna, i en MongoDB eller i den vanliga databasen?
+      //kan jag på något snyggt sätt lägga in priserna direkt i this.state.objects?
+
+      // this.socket.on('stocks', (message) => {
+      //     this.setState({ prices: [] })
+      //     message.map((cake) => {
+
+      //         this.setState({ prices: [...this.state.prices, cake] })
+      //     });
+      //     //writes out the entire object with price, name, everything.
+      //     console.log(this.state.prices);
+      // });
+
+      // this.socket.on('disconnect', () => {
+      //     console.log("Disconnected");
+      // });
   };
 
   // Handler for buying each individual Product

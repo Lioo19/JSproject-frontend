@@ -11,18 +11,19 @@ class Navbar extends Component {
   render() {
     return (
         <>
+        <Link className="logo" to="/">Växra</Link>
         <div className="App">
           <nav className="navBar">
-            <li>
+            <li className="navLi">
               <Link to="/">Hem</Link>
             </li>
-            <li>
+            <li className="navLi">
               <Link to="/marketplace">Marknad</Link>
             </li>
-            <li>
+            <li className="navLi">
               <Link to="/login">Logga in</Link>
             </li>
-            <li>
+            <li className="navLi">
               <Link to="/profile/ß">Profil</Link>
             </li>
           </nav>

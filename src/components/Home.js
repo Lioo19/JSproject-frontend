@@ -25,7 +25,7 @@ class Home extends Component {
       return (
         <div className="fpageDiv">
             <div className="left">
-            <h2>{this.state.data.h2}</h2>
+            <h1>{this.state.data.h2}</h1>
             <h4>{this.state.data.h4}</h4>
             <p>{this.state.data.p1}</p>
             <p>{this.state.data.p2}</p>

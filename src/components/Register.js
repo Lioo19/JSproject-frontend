@@ -57,45 +57,43 @@ class Register extends Component {
       }
       return (
           <main>
-            <h3>Registrera dig</h3>
-
-            <form onSubmit={this.submitHandler}>
-                <label>Choose username </label>
-                <br/>
-                <input
-                    type='text'
-                    name='username'
-                    required
-                    onChange={this.changeHandler}
-                />
-                <br/>
-                <label>Enter email </label>
-                <br/>
-                <input
-                    type='text'
-                    name='email'
-                    required
-                    onChange={this.changeHandler}
-                    autoComplete='username'
-                />
-                <br/>
-                <label>Enter Password (minimum 8 characters)</label>
-                <br/>
-                <input
-                    type='password'
-                    name='password'
-                    required
-                    onChange={this.changeHandler}
-                    minLength='8'
-                    autoComplete='current-password'
-                />
-                <br/>
-                <input
-                    type='submit'
-                />
-            </form>
-                <div className={"content"}>
-                    <Link to="login">Logga in</Link>
+            <h1>Registrera dig</h1>
+            <div className={"loginContent"}>
+                <form className={"login"} onSubmit={this.submitHandler}>
+                    <label>Användarnamn</label>
+                    <br/>
+                    <input
+                        type='text'
+                        name='username'
+                        required
+                        onChange={this.changeHandler}
+                    />
+                    <br/>
+                    <label>Email </label>
+                    <br/>
+                    <input
+                        type='text'
+                        name='email'
+                        required
+                        onChange={this.changeHandler}
+                    />
+                    <br/>
+                    <label>Lösenord <br/><i>(minst 8 karaktärer)</i></label>
+                    <br/>
+                    <input
+                        type='password'
+                        name='password'
+                        required
+                        onChange={this.changeHandler}
+                        minLength='8'
+                    />
+                    <br/>
+                    <input
+                        type='submit'
+                        value='registrera dig'
+                    />
+                </form>
+                <Link to="login">Logga in</Link>
                 </div>
           </main>
       );

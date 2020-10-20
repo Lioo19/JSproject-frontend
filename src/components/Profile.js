@@ -6,6 +6,8 @@ import {
 
 import { auth } from "./Auth.js";
 
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 
 class Profile extends Component {
   constructor() {
@@ -116,9 +118,10 @@ class Profile extends Component {
 
       return (
           <main>
-            <div className={"profile"}>
-                <h3>PROFIL</h3>
-                <div>
+            <div className={"content"}>
+                <h1>PROFIL</h1>
+                <div className={"profile"}>
+                <AccountCircle />
                   {auth.token ?
                       <div>
                         <p>{this.state.username}</p>

@@ -43,7 +43,7 @@ class Product extends Component {
 
       return (
           <div className={"content"} >
-              <h2>{object.name}</h2>
+              <h1>{object.name}</h1>
               <figure className={"objectCardLarge"}>
               {object.img ?
                   <img

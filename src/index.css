@@ -1,4 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+:root {
+    --darkest: #010d00;
+    --darker: #022601;
+    --medium: #63a303;
+    --light: #83d706;
+    --lighter: #bdf988;
+    --lightest: #f2fff4;
+    --gray-white: #ebebeb;
+}
 
 body {
   margin: 0;
@@ -13,46 +22,54 @@ html {
     height: 100%;
     font-size: 100%;
     font-family: 'Quicksand', sans-serif;
-    background: rgb(13,13,13);
-    background: linear-gradient(142deg, rgba(13,13,13,1) 0%, rgba(50,50,50,1) 100%);
+    background: var(--darker);
 }
 
 .App {
     margin: 0 auto;
-    padding: 0.6em 6em 8em;
-    height: 100%;
-    color: #d9a566;
-    background: rgba(113,113,113,1);
-    background: linear-gradient(142deg, rgba(113,113,113,1) 0%, rgba(50,50,50,1) 100%);
-    background-size: cover;
+    padding: 0.6em 1em 0.6em;
+    width: 50%;
+    float: right;
+    color: var(--lightest);
+    border-radius: 0 0 0 30px;
+    background: var(--darkest);
+    -webkit-box-shadow: -4px 4px 5px 0px rgba(3,61,1,1);
+    -moz-box-shadow: -4px 4px 5px 0px rgba(3,61,1,1);
+    box-shadow: -4px 4px 5px 0px rgba(3,61,1,1);
 }
 
 h1 {
-    font-size: 5em;
-    font-weight: 100;
-}
-
-h2 {
     text-transform: uppercase;
+    text-align: center;
     font-size: 4em;
     font-weight: 100;
-    margin: 2% 0;
+    margin: 0 0 2% 0;
+    color: var(--lighter);
 }
 
 h3 {
     font-size: 2.6rem;
     font-weight: 200;
+    margin: 0 0 2% 0;
 }
 
 h4 {
     font-size: 1.5rem;
 }
 
+.logo {
+    color: green;
+    font-size: 400%;
+    text-decoration: none;
+    margin-left: 2%;
+    text-transform: uppercase;
+}
+
 
 p {
     font-size: 1.2em;
     font-weight: normal;
-    color: #fff6e6;
+    color: var(--lightest);
 }
 
 ul {
@@ -67,32 +84,42 @@ li {
 
 li a {
     text-decoration: none;
-    color: #fff6e6;
+    color: var(--lightest);
     font-size: 1.4em;
+}
+
+label {
+    color: var(--lightest);
 }
 
 li a:hover {
     text-decoration: underline;
 }
 
-a.edit {
-    padding: 1%;
-    background-color: #d9a566;
-    color: rgb(13,13,13);
-    border-radius: 5%;
-    text-decoration: none;
-    font-weight: 700;
+.loginContent {
+    width: 30%;
+    margin-left: 40%;
 }
+
+.login {
+    line-height: 1.5;
+    font-size: 120%;
+}
+
+.login input {
+    padding: 5%;
+}
+
+.navLi {
+    margin-right: 2%;
+    margin-left: 4%;
+}
+
 
 .navBar {
     padding-bottom: 1%;
-    border-bottom: 2px groove #fff6e6;
 }
 
-.weeks {
-    padding-bottom: 1%;
-    border-bottom: 1px groove #A66F3F;
-}
 
 .fpageDiv {
     display: flex;
@@ -113,31 +140,39 @@ a.edit {
     width: 100%;
 }
 
-.content a {
-    color: #d9a566;
+.content {
+    width: 80%;
+    margin-left: 10%;
 }
 
-.content a:visited {
-    color: #DB823B;
+.loginContent a {
+    color: var(--lightest);
 }
 
-.content h2 {
+.loginContent a:visited {
+    color: var(--light);
+}
+
+.loginContent h2 {
     font-size: 2.2em;
 }
 
-.content h3 {
+.loginContent h3 {
     font-size: 2em;
 }
 
 input[type=submit] {
     margin: 1% 0;
     padding: 0.5%;
+    margin-left: 60%;
+
 }
 
 input[type=password],
 input[type=text] {
-    margin: 1% 0;
-    padding: 0.5% 5% 0.5% 0.5%;
+    margin: 2% 0 5%;
+    padding: 2% 5% 2% 2%;
+    width: 70%;
 }
 
 /* CHAT */
@@ -207,8 +242,12 @@ figure.objectCardLarge img {
     margin-top: 5%;
 }
 
+/*  PROFILE PAGE SETTINGS
+*/
+
 .profile {
     background-color: red;
+    min-height: 250px;
     width: 30%;
     margin-left: 35%;
 }

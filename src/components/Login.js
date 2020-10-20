@@ -67,34 +67,35 @@ class Login extends Component {
       }
       return (
           <main>
-              <h2>Login</h2>
+              <h1>Logga in</h1>
               <p className={"infomsg"}>{this.state.msg}</p>
-              <form onSubmit={this.submitHandler}>
-                  <label>Enter email </label>
-                  <br/>
-                  <input
-                      type='text'
-                      name='email'
-                      required
-                      onChange={this.changeHandler}
-                      autoComplete='username'
-                  />
-                  <br/>
-                  <label>Enter Password </label>
-                  <br/>
-                  <input
-                      type='password'
-                      name='password'
-                      required
-                      onChange={this.changeHandler}
-                      autoComplete='current-password'
-                  />
-                  <br/>
-                  <input
-                      type='submit'
-                  />
-              </form>
-              <div className={"content"}>
+              <div className={"loginContent"}>
+                  <form className={"login"} onSubmit={this.submitHandler}>
+                      <label>Email </label>
+                      <br/>
+                      <input
+                          type='text'
+                          name='email'
+                          required
+                          onChange={this.changeHandler}
+                          autoComplete='email'
+                      />
+                      <br/>
+                      <label>Lösenord </label>
+                      <br/>
+                      <input
+                          type='password'
+                          name='password'
+                          required
+                          onChange={this.changeHandler}
+                          autoComplete='current-password'
+                      />
+                      <br/>
+                      <input
+                          type='submit'
+                          value='Logga in'
+                      />
+                  </form>
                 <Link to="register">Registrering</Link>
               </div>
           </main>
