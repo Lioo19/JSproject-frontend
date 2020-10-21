@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import {
   Switch,
   Route,
- /* Link, */
+  Link,
   useRouteMatch
 } from "react-router-dom";
 
@@ -37,7 +37,8 @@ function Marketplace() {
           <h1>Marknad</h1>
           <Market />
         </Route>
-        <Route path={`${path}/product/:nr`} component={Product}>
+        <Route path={`${path}/product/:nr`}>
+            <Product />
         </Route>
       </Switch>
     </div>
@@ -52,10 +53,10 @@ class Market extends Component {
           balance: auth.balance,
           data: "",
           objects: [],
-          prices: []
+          withPrices: []
       };
 
-      // this.socket = io(socketURL)
+      this.socket = io(socketURL)
   }
 
   //gets all objects with user=none
@@ -71,20 +72,17 @@ class Market extends Component {
       //     console.log("connected")
       // });
 
-      //adderar currentkakor till prices, CHECK
-      //Hur gör jag för att skicka mina växter till socketen?
-      //var vill jag lägga infon om priserna, i en MongoDB eller i den vanliga databasen?
-      //kan jag på något snyggt sätt lägga in priserna direkt i this.state.objects?
+      //priserna kommer in på sidan, nu är det bara grafen kvar
 
-      // this.socket.on('stocks', (message) => {
-      //     this.setState({ prices: [] })
-      //     message.map((cake) => {
+      this.socket.on('stocks', (message) => {
+          this.setState({ withPrices: [] })
+          message.map((cake) => {
 
-      //         this.setState({ prices: [...this.state.prices, cake] })
-      //     });
-      //     //writes out the entire object with price, name, everything.
-      //     console.log(this.state.prices);
-      // });
+              this.setState({ withPrices: [...this.state.withPrices, cake] })
+          });
+          //writes out the entire object with price, name, everything.
+          console.log(this.state.withPrices);
+      });
 
       // this.socket.on('disconnect', () => {
       //     console.log("Disconnected");
@@ -131,7 +129,7 @@ class Market extends Component {
   };
 
   render() {
-      const { objects } = this.state;
+      const { withPrices } = this.state;
 
 
       /*HÄR SKA DET IN GREJER OM MAN ÄR INLOGGAD
@@ -139,19 +137,32 @@ class Market extends Component {
           om man trycker på knapp när man är inloggad skall en request skickas
           där user=username och balance dras av*/
       return (
-          <div className={"content"} >
-            {objects.map(object =>
+          <>
+          {
+              auth.token ?
+              <div>
+              </div>
+              :
+              <div className="center">
+                <p>Vill du tradea en stickling? Vänligen
+                <Link to="login"> logga in</Link>
+                </p>
+              </div>
+          }
+          <div className={"marketContent"} >
+            {withPrices.map(object =>
                 <li key={object.nr}>
-                    <a href={`marketplace/product/${object.nr}`}>
+                    <Link to={`marketplace/product/${object.nr}`}>
                         <figure className={"objectCard"}>
                             <img
                                 src={require(`../img/${object.img}`)}
                                 className={"thumb"}
                                 alt={`${object.name}`}/>
                             <p>{object.name}</p>
-                            <p>{object.latin}</p>
                             {auth.token ?
                                 <>
+                                <p>Pris: </p>
+                                <i>{object.startingPoint}</i>
                                 <form onSubmit={this.buyHandler}>
                                 <input
                                     type="hidden"
@@ -165,14 +176,17 @@ class Market extends Component {
                                 </form>
                                 </>
                             :
-                            <p>V för kostnad</p>
+                            <>
+                            <p>Pris: </p>
+                            <i>{object.startingPoint}</i>
+                            </>
                         }
                         </figure>
-                    </a>
+                    </Link>
                 </li>
             )}
-            <p>Inte inloggad</p>
           </div>
+          </>
       )
   }
 }

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import frontimg from "../frontimg.jpg";
 
+import { auth } from "./Auth.js";
+
 class Home extends Component {
   constructor() {
     super();
@@ -9,6 +11,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+      console.log(auth.token);
       const baseURL = process.env.NODE_ENV === "development"
           ? "http://localhost:1337"
           : "https://me-api.linneaolofsson.me";

@@ -11,6 +11,7 @@ import { Navbar } from "./components/Navbar.js";
 import { Login } from "./components/Login.js";
 import { Register } from "./components/Register.js";
 import { Profile } from "./components/Profile.js";
+import { Product } from "./components/Product.js";
 import { Marketplace } from "./components/Marketplace.js";
 
 // Since routes are regular React components, they
@@ -31,6 +32,7 @@ export default function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/marketplace/product/:nr" component={Product} />
           <Route path="/marketplace" component={Marketplace} />
           <Route path="/profile" component={Profile} />
           <Route exact path="/" component={Home} />

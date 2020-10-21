@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import ReactMarkdown from 'react-markdown';
 
 import { auth } from "./Auth.js";
 
@@ -19,7 +18,7 @@ class Product extends Component {
         name: "",
         latin: "",
         img: "",
-        user: ""
+        user: "",
       };
   }
 
@@ -42,32 +41,35 @@ class Product extends Component {
       const object = this.state;
 
       return (
-          <div className={"content"} >
+          <>
+          {
+              console.log(auth.token)
+          }
+          <div className={"productContent"} >
               <h1>{object.name}</h1>
               <figure className={"objectCardLarge"}>
-              {object.img ?
-                  <img
-                      src={require(`../img/${object.img}`)}
-                      className={"thumb"}
-                      alt={`${object.name}`}/>
-                  :
-                  <p>no-img</p>
-              }
-                  <p>{object.name}</p>
-                  <p>{object.latin}</p>
-                  <p>{object.img}</p>
-                  <p>{object.nr}</p>
+              <div className="imgdiv">
+                  {object.img ?
+                      <img
+                          src={require(`../img/${object.img}`)}
+                          className={"thumbLarge"}
+                          alt={`${object.name}`}/>
+                      :
+                      <p>no-img</p>
+                  }
+              </div>
+                  <p>Namn: {object.name}</p>
+                  <p>Latinskt namn: {object.latin}</p>
+                  <p>Objektsnummer: {object.nr}</p>
               </figure>
-              Varför fungerar den inte när man är inloggad här, men i marketplace?
               {
-                  console.log("this is auth" + auth.token)
-              }{
                   auth.token ?
                   <p>{`Inloggad`}</p>
                   :
                   <p>{`Inte inloggad`}</p>
               }
           </div>
+          </>
       )
   }
 }

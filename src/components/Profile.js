@@ -122,27 +122,37 @@ class Profile extends Component {
                 <h1>PROFIL</h1>
                 <div className={"profile"}>
                 <AccountCircle />
+
                   {auth.token ?
-                      <div>
+                      <>
                         <p>{this.state.username}</p>
-                        <p>{this.state.balance}</p>
+                        <p>Saldo: {this.state.balance}</p>
+                        <br/>
+                        <p>Vill du öka ditt saldo?</p>
                         <form onSubmit={this.addHandler}>
                             <input
+                                className="saldoinp"
                                 type="number"
                                 name="amount"
                                 value={this.state.amount}
                                 onChange={this.changeAddHandler}
                             />
                             <input
+                                className="saldobutton"
                                 type="submit"
                                 value="Lägg till"
                             />
                         </form>
-                    </div>
+                    </>
                       :
                       <p>Ej inloggad</p>
                   }
                 </div>
+                {this.state.objects.length !== 0 ?
+                    <p className="blah">Objekt i din ägo</p>
+                    :
+                    <br/>
+                }
             </div>
             <div className={"profileprods"}>
                 {this.state.objects.length !== 0 ?

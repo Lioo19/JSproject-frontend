@@ -2,7 +2,7 @@
 :root {
     --darkest: #010d00;
     --darker: #022601;
-    --medium: #63a303;
+    --medium: #4b7d00;
     --light: #83d706;
     --lighter: #bdf988;
     --lightest: #f2fff4;
@@ -12,6 +12,7 @@
 body {
   margin: 0;
   width: 100%;
+  height: 100%;
 }
 
 li {
@@ -96,6 +97,8 @@ li a:hover {
     text-decoration: underline;
 }
 
+/* LOGIN FORM + REGISTER */
+
 .loginContent {
     width: 30%;
     margin-left: 40%;
@@ -140,16 +143,11 @@ li a:hover {
     width: 100%;
 }
 
-.content {
-    width: 80%;
-    margin-left: 10%;
-}
-
-.loginContent a {
+ a {
     color: var(--lightest);
 }
 
-.loginContent a:visited {
+ a:visited {
     color: var(--light);
 }
 
@@ -175,24 +173,23 @@ input[type=text] {
     width: 70%;
 }
 
-/* CHAT */
-
-#all_msg {
-    border: 1px solid #db823B;
-    padding: 5%;
-    margin-bottom: 2%;
-}
-
-.msg_text {
-    margin: 2% 0 2% 5%;
-}
-
-.chaterror {
-    color: red;
-}
-
 .smalli {
     font-size: 80%;
+}
+
+/* MARKNAD */
+
+.marketContent {
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+.center {
+    text-align: center;
 }
 
 figure.objectCard {
@@ -219,22 +216,37 @@ img.thumb {
 }
 
 figure p {
-    color: black;
+    color: var(--darkest);
     margin: 0;
     text-align: center;
+}
+
+/* PRODUCT */
+
+.productContent {
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap;
 }
 
 figure.objectCardLarge {
     display: inline-block;
     overflow: hidden;
-    background-color: #efefef;
+    background-color: var(--lightest);
     padding: 5px;
     margin: 8px;
-    width: 300px;
-    height: 350px;
+    width: 700px;
+    height: 500px;
     text-decoration: none;
     box-shadow: 0 0 15px 1px #aaa;
     transition: box-shadow .15s ease;
+}
+img.thumbLarge {
+    max-width: 300px;
+    max-height: 300px;
 }
 
 figure.objectCardLarge img {
@@ -246,12 +258,51 @@ figure.objectCardLarge img {
 */
 
 .profile {
-    background-color: red;
-    min-height: 250px;
-    width: 30%;
-    margin-left: 35%;
+    background-color: var(--medium);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 40%;
+    width: 40%;
+    margin-left: 30%;
+    border-radius: 20px;
 }
 
+.profile p {
+    margin: 2% 0;
+}
+
+.profile h5 {
+    font-size: 1.4rem;
+    margin: 1% 0;
+}
+
+.saldoinp {
+    width: 50%;
+    margin: 0 0 10% 5%;
+}
+
+input.saldobutton {
+    margin-left: 10%;
+}
+
+.MuiSvgIcon-root {
+    font-size: 1000% !important;
+    text-align: center !important;
+    color: var(--lightest) !important;
+}
+
+.profileprods {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin-top: 2%;
+}
+
+.blah {
+    text-align: center;
+}
 
 @media screen and (max-width: 1000px) {
     .fpageDiv {
