@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-// import ReactMarkdown from 'react-markdown';
+import { Line } from "react-chartjs-2";
+
 
 import {
   Switch,
@@ -53,41 +54,47 @@ class Market extends Component {
           balance: auth.balance,
           data: "",
           objects: [],
-          withPrices: []
+          withPrices: [],
+          data: [{ dataset: [23, 24, 27, 21, 19] }]
       };
 
-      this.socket = io(socketURL)
+      this.socket = io(socketURL);
+
+      this.chartReference = React.createRef();
   }
 
   //gets all objects with user=none
-  //Every time the component mounts, should there be an update in price? more often?
   componentDidMount() {
       fetch(baseURL)
           .then(response => response.json())
           .then(data => {
               this.setState({ objects: data });
           });
-      //
-      // this.socket.on('test', () => {
-      //     console.log("connected")
-      // });
 
       //priserna kommer in på sidan, nu är det bara grafen kvar
 
       this.socket.on('stocks', (message) => {
           this.setState({ withPrices: [] })
           message.map((cake) => {
+              // console.log(cake)
 
-              this.setState({ withPrices: [...this.state.withPrices, cake] })
+              this.setState({
+                  withPrices: [...this.state.withPrices, cake] })
           });
-          //writes out the entire object with price, name, everything.
-          console.log(this.state.withPrices);
+          // console.log(this.state);
+
+
+          // console.log(this.state.withPrices);
+
       });
 
-      // this.socket.on('disconnect', () => {
-      //     console.log("Disconnected");
-      // });
+      // console.log(this.chartReference);
   };
+
+  //When leaving, disconnect the socket
+  componentWillUnmount() {
+      this.socket.disconnect();
+  }
 
   // Handler for buying each individual Product
   // when socket's done, it should decide the price
@@ -128,6 +135,22 @@ class Market extends Component {
 
   };
 
+  getChartData = canvas => {
+    const data = this.state.data;
+    if (data.datasets) {
+        let colors = ["rgba(187, 2, 30, 1)", "rgba(2, 94, 187, 1)", "rgba(220, 227, 28, 1)"];
+        let borderColors = ["rgba(0, 0, 0, 1)", "rgba(0, 0, 0, 1)", "rgba(0, 0, 0, 1)"]
+        data.datasets.forEach((set, i) => {
+            set.backgroundColor = this.setGradientColor(canvas, colors[i]);
+            set.borderColor = this.setGradientColor(canvas, borderColors[i]);
+            set.borderWidth = 2;
+        })
+    }
+
+    return data;
+  }
+
+
   render() {
       const { withPrices } = this.state;
 
@@ -154,10 +177,18 @@ class Market extends Component {
                 <li key={object.nr}>
                     <Link to={`marketplace/product/${object.nr}`}>
                         <figure className={"objectCard"}>
-                            <img
-                                src={require(`../img/${object.img}`)}
-                                className={"thumb"}
-                                alt={`${object.name}`}/>
+                        <Line
+                            data={this.getChartData}
+                            options= {{
+                            title: {
+                                display: true,
+                                text: "Hej",
+                                fontSize: 18,
+                                //maintainAspectRatio: false,
+                                responsive: true
+                            },
+                            }}
+                            />
                             <p>{object.name}</p>
                             {auth.token ?
                                 <>

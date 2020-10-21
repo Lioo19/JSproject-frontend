@@ -239,7 +239,7 @@ figure.objectCardLarge {
     padding: 5px;
     margin: 8px;
     width: 700px;
-    height: 500px;
+    height: 1000px;
     text-decoration: none;
     box-shadow: 0 0 15px 1px #aaa;
     transition: box-shadow .15s ease;
