@@ -3,7 +3,7 @@
     --darkest: #010d00;
     --darker: #022601;
     --medium: #4b7d00;
-    --light: #83d706;
+    --light: #b5ecb4;
     --lighter: #bdf988;
     --lightest: #f2fff4;
     --gray-white: #ebebeb;
@@ -24,6 +24,11 @@ html {
     font-size: 100%;
     font-family: 'Quicksand', sans-serif;
     background: var(--darker);
+}
+
+figure {
+    margin: 0;
+    padding: 0;
 }
 
 .App {
@@ -49,13 +54,15 @@ h1 {
 }
 
 h3 {
-    font-size: 2.6rem;
+    color: var(--lighter);
+    font-size: 3rem;
     font-weight: 200;
     margin: 0 0 2% 0;
 }
 
 h4 {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    color: var(--lightest);
 }
 
 .logo {
@@ -182,14 +189,14 @@ input[type=text] {
     display: inline-block;
     overflow: hidden;
     background-color: #efefef;
-    padding: 5px;
-    margin: 8px;
     width: 300px;
-    height: 350px;
+    height: 308px;
+    margin-bottom: 10%;
     text-decoration: none;
     box-shadow: 0 0 15px 1px #aaa;
     transition: box-shadow .15s ease;
 }
+
 
 .objectCard img {
     margin-left: 17.5%;
@@ -197,14 +204,29 @@ input[type=text] {
 }
 
 img.thumb {
-    max-width: 200px;
-    max-height: 200px;
+    width: 100%;
+    margin: 0;
 }
 
 .objectCard p {
     color: var(--darkest);
-    margin: 0;
-    text-align: center;
+    margin: 2% 0 0 4%;
+    text-align: left;
+}
+
+.buyForm {
+    display: block;
+}
+
+input[type=submit] {
+    background: var(--darker);
+    border: none;
+    height: 100%;
+    color: var(--lightest);
+    text-transform: uppercase;
+    padding: 1%;
+    width: 35%;
+    margin: 0 0 1% 60%;
 }
 
 /* PRODUCT */
@@ -231,8 +253,7 @@ figure.objectCardLarge {
     transition: box-shadow .15s ease;
 }
 img.thumbLarge {
-    max-width: 300px;
-    max-height: 300px;
+    width: 100%;
 }
 
 figure.objectCardLarge img {
@@ -244,14 +265,15 @@ figure.objectCardLarge img {
 */
 
 .profile {
-    background-color: var(--medium);
+    background-color: var(--darker);
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     height: 40%;
     width: 40%;
     margin-left: 30%;
-    border-radius: 20px;
+    padding-bottom: 1%;
 }
 
 .profile p {
@@ -263,13 +285,21 @@ figure.objectCardLarge img {
     margin: 1% 0;
 }
 
+.profileadd {
+    text-align: center;
+}
+
 .saldoinp {
-    width: 50%;
-    margin: 0 0 10% 5%;
+    width: 60%;
+    margin: 5% 0 10% 0;
 }
 
 input.saldobutton {
-    margin-left: 10%;
+    color: var(--darker);
+    background-color: var(--lightest);
+    width: 50%;
+    padding: 3% 0;
+    margin: 0;
 }
 
 .MuiSvgIcon-root {
@@ -280,6 +310,7 @@ input.saldobutton {
 
 .profileprods {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     align-content: center;
@@ -395,6 +426,10 @@ a:visited {
 }
 
 .msg {
+    text-align: center;
+}
+
+.msg i {
     text-align: center;
 }
 

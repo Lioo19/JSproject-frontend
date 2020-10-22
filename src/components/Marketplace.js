@@ -56,8 +56,6 @@ class Market extends Component {
       };
 
       this.socket = io(socketURL);
-
-      this.chartReference = React.createRef();
   }
 
   //gets all objects with user=none
@@ -67,8 +65,6 @@ class Market extends Component {
           .then(data => {
               this.setState({ objects: data });
           });
-
-      //priserna kommer in på sidan, nu är det bara grafen kvar
 
       this.socket.on('stocks', (message) => {
           this.setState({ withPrices: [] })
@@ -81,7 +77,6 @@ class Market extends Component {
                   }
               });
           });
-          console.log(this.state.withPrices)
       });
   };
 
@@ -104,7 +99,6 @@ class Market extends Component {
           'who': this.state.username,
           'amount': event.target[1].value
       }
-
 
       if (this.state.balance < payload.amount) {
           this.setState({ msg: "För lågt saldo på ditt konto"});
@@ -131,12 +125,6 @@ class Market extends Component {
 
       }
 
-      if (true) {
-
-      } else if (true) {
-
-      }
-
   };
 
 
@@ -144,28 +132,28 @@ class Market extends Component {
       const { withPrices } = this.state;
       const { objects } = this.state;
 
-      return (
-          <>
-          { this.state.msg ?
-              <p className="msg">{this.state.msg}</p>
-            :
-            <p></p>
-          }
-          {
-              auth.token ?
-              <div>
-              </div>
-              :
-              <div className="center">
-                <p>Vill du tradea en stickling? Vänligen
-                <Link to="login"> logga in</Link>
-                </p>
-              </div>
-          }
-          <div className={"marketContent"} >
-            {withPrices.map(object =>
-                <li key={object.nr} className={"objectCard"}>
-                    <div>
+      if (withPrices.length === 0) {
+          return (
+              <>
+              { this.state.msg ?
+                  <p className="msg">{this.state.msg}</p>
+                :
+                <p></p>
+              }
+              {
+                  auth.token ?
+                  <div>
+                  </div>
+                  :
+                  <div className="center">
+                    <p>Vill du tradea en stickling? Vänligen
+                    <Link to="login"> logga in</Link>
+                    </p>
+                  </div>
+              }
+              <div className={"marketContent"} >
+                {objects.map(object =>
+                    <li key={object.nr} className={"objectCard"}>
                         <Link to={`marketplace/product/${object.nr}`}>
                             <figure>
                             <img
@@ -175,40 +163,101 @@ class Market extends Component {
                                 <p>{object.name}</p>
                             </figure>
                         </Link>
-                    </div>
-                    {auth.token ?
-                        <>
-                        <p>Pris:
-                        <i> {parseFloat(object.startingPoint).toFixed(2)}</i> kr</p>
-                        <form onSubmit={this.buyHandler.bind(this)}>
-                            <input
-                                type="hidden"
-                                name="nr"
-                                value={object.nr}
-                            />
-                            <input
-                                type="hidden"
-                                name="cost"
-                                value={parseFloat(object.startingPoint).toFixed(2)}
+                        {auth.token ?
+                            <>
+                            <p><i>-</i> kr</p>
+                            <form onSubmit={this.buyHandler.bind(this)} className="buyForm">
+                                <input
+                                    type="hidden"
+                                    name="nr"
+                                    value={object.nr}
                                 />
-                            <input
-                                    type="submit"
-                                    value="köp"
-                            />
-                        </form>
+                                <input
+                                    type="hidden"
+                                    name="cost"
+                                    value="10"
+                                    />
+                                <input
+                                        type="submit"
+                                        value="köp"
+                                />
+                            </form>
+                            </>
+                        :
+                        <>
+                        <p><i>pris visas snart</i></p>
                         </>
-                    :
-                    <>
-                    <p>Pris:
-                    <i>{parseFloat(object.startingPoint).toFixed(2)}</i> kr</p>
-                    </>
-                }
+                    }
 
-                </li>
-            )}
-          </div>
-          </>
-      )
+                    </li>
+                )}
+              </div>
+              </>
+          )
+      } else {
+
+          return (
+              <>
+              { this.state.msg ?
+                  <p className="msg">{this.state.msg}</p>
+                :
+                <p></p>
+              }
+              {
+                  auth.token ?
+                  <div>
+                  </div>
+                  :
+                  <div className="center">
+                    <p>Vill du tradea en stickling? Vänligen
+                    <Link to="login"> logga in</Link>
+                    </p>
+                  </div>
+              }
+              <div className={"marketContent"} >
+                {withPrices.map(object =>
+                    <li key={object.nr} className={"objectCard"}>
+                        <Link to={`marketplace/product/${object.nr}`}>
+                            <figure>
+                            <img
+                                src={require(`../img/${object.img}`)}
+                                className={"thumb"}
+                                alt={`${object.name}`}/>
+                                <p>{object.name}</p>
+                            </figure>
+                        </Link>
+                        {auth.token ?
+                            <>
+                            <p><i> {parseFloat(object.startingPoint).toFixed(2)}</i> kr</p>
+                            <form onSubmit={this.buyHandler.bind(this)} className="buyForm">
+                                <input
+                                    type="hidden"
+                                    name="nr"
+                                    value={object.nr}
+                                />
+                                <input
+                                    type="hidden"
+                                    name="cost"
+                                    value={parseFloat(object.startingPoint).toFixed(2)}
+                                    />
+                                <input
+                                        type="submit"
+                                        value="köp"
+                                />
+                            </form>
+                            </>
+                        :
+                        <>
+                        <p><i>{parseFloat(object.startingPoint).toFixed(2)}</i> kr</p>
+                        </>
+                    }
+
+                    </li>
+                )}
+              </div>
+              </>
+          )
+      }
   }
 }
 

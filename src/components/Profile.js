@@ -3,10 +3,19 @@ import {
     Redirect,
 } from "react-router-dom";
 
+import io from "socket.io-client";
 
 import { auth } from "./Auth.js";
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
+
+const socketURL = process.env.NODE_ENV === "development"
+    ? "http://localhost:8300/"
+    : "https://project-socket.linneaolofsson.me";
+
+const baseURL = process.env.NODE_ENV === "development"
+    ? "http://localhost:1337/profile/"
+    : "https://me-api.linneaolofsson.me/profile/";
 
 
 class Profile extends Component {
@@ -19,39 +28,49 @@ class Profile extends Component {
           number: "",
           msg: "",
           objects: [],
+          withPrices: [],
           redirect: null
       };
+
+      this.socket = io(socketURL);
   }
 
   componentDidMount() {
-      const baseURL = process.env.NODE_ENV === "development"
-          ? "http://localhost:1337/profile/"
-          : "https://me-api.linneaolofsson.me/profile/";
-
       fetch(baseURL + auth.username)
           .then(response => response.json())
           .then(data => {
               this.setState({ objects: data });
           });
+
+      this.socket.on('stocks', (message) => {
+          this.setState({ withPrices: [] })
+          message.map((cake) => {
+
+              this.state.objects.forEach((item) => {
+                  if (cake.nr === item.nr) {
+                      this.setState({
+                          withPrices: [...this.state.withPrices, cake] })
+                  }
+              });
+          });
+      });
   };
 
 // Should sell product
   sellHandler = (event) => {
       event.preventDefault();
-      const baseURL = process.env.NODE_ENV === "development"
+      const sellURL = process.env.NODE_ENV === "development"
           ? `http://localhost:1337/profile/${this.state.username}/sell`
           : `https://me-api.linneaolofsson.me/profile/${this.state.username}/sell`;
-
-
 
       //amount should be set with the socket-value
       let payload={
           'nr': event.target[0].value,
           'who': this.state.username,
-          'amount': 10
+          'amount': event.target[1].value
       }
 
-      fetch(baseURL, {
+      fetch(sellURL, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json',
@@ -111,6 +130,7 @@ class Profile extends Component {
 
   render() {
       const { objects } = this.state;
+      const { withPrices } = this.state;
 
       if (this.state.redirect) {
           return <Redirect to={this.state.redirect} />
@@ -119,17 +139,17 @@ class Profile extends Component {
       return (
           <main>
             <div className={"content"}>
-                <h1>PROFIL</h1>
                 <div className={"profile"}>
-                <AccountCircle />
 
                   {auth.token ?
                       <>
-                        <p>{this.state.username}</p>
+                        <h3>{this.state.username}</h3>
+                        <AccountCircle />
                         <p>Saldo: {this.state.balance}</p>
                         <br/>
-                        <p>Vill du öka ditt saldo?</p>
-                        <form onSubmit={this.addHandler}>
+                        <form onSubmit={this.addHandler} className="profileadd">
+                        <label>Vill du öka ditt saldo?</label>
+                            <br/>
                             <input
                                 className="saldoinp"
                                 type="number"
@@ -145,44 +165,68 @@ class Profile extends Component {
                         </form>
                     </>
                       :
+                      <>
+                      <AccountCircle />
                       <p>Ej inloggad</p>
+                      </>
                   }
                 </div>
                 {this.state.objects.length !== 0 ?
-                    <p className="blah">Objekt i din ägo</p>
+                    <>
+                    <h4 className="msg">Objekt i din ägo</h4>
+                    </>
                     :
                     <br/>
                 }
+                {this.state.msg.length !== 0 ?
+                    <p>{this.state.msg}</p>
+                :
+                    <p></p>
+                }
             </div>
-            <div className={"profileprods"}>
-                {this.state.objects.length !== 0 ?
-                    objects.map(object =>
-                        <li key={object.nr}>
-                            <figure className={"objectCard"}>
-                                <img
-                                    src={require(`../img/${object.img}`)}
-                                    className={"thumb"}
-                                    alt={`${object.name}`}/>
-                                <p>{object.name}</p>
-                                <p>{object.latin}</p>
-                                    <form onSubmit={this.sellHandler}>
-                                    <input
-                                        type="hidden"
-                                        name="nr"
-                                        value={object.nr}
-                                        />
+                <div className={"profileprods"}>
+                    {withPrices.length !== 0 ?
+                        withPrices.map(object =>
+                            <li key={object.nr}>
+                                <figure className={"objectCard"}>
+                                    <img
+                                        src={require(`../img/${object.img}`)}
+                                        className={"thumb"}
+                                        alt={`${object.name}`}/>
+                                    <p>{object.name}</p>
+                                    {object.boughtfor ?
+                                        <p>Köpt för <i>{object.boughtfor}</i> kr</p>
+                                        :
+                                        <i className="msg"> Inköpspris saknas</i>
+                                    }
+                                    <p>Pris: <i>{parseFloat(object.startingPoint).toFixed(2)}</i></p>
+                                        <form onSubmit={this.sellHandler} className="buyForm">
                                         <input
-                                            type="submit"
-                                            value="sälj"
-                                        />
-                                    </form>
-                            </figure>
-                        </li>
-                    )
-                    :
-                    <p> Inga produkter ännu </p>
-                    }
-            </div>
+                                            type="hidden"
+                                            name="nr"
+                                            value={object.nr}
+                                            />
+                                        <input
+                                            type="hidden"
+                                            name="value"
+                                            value={object.startingPoint}
+                                            />
+                                            <input
+                                                type="submit"
+                                                value="sälj"
+                                            />
+                                        </form>
+                                </figure>
+                            </li>
+                        )
+                        :
+                        objects.length !== 0 ?
+                            <p>Produkter laddas</p>
+                            :
+                            <p> Inga produkter att visa </p>
+                        }
+
+                </div>
           </main>
       );
   }
