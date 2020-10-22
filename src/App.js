@@ -8,6 +8,7 @@ import {
 
 import { Home } from "./components/Home.js";
 import { Navbar } from "./components/Navbar.js";
+import { Footer } from "./components/Footer.js";
 import { Login } from "./components/Login.js";
 import { Register } from "./components/Register.js";
 import { Profile } from "./components/Profile.js";
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/profile" component={Profile} />
           <Route exact path="/" component={Home} />
         </Switch>
+        <Footer />
       </div>
     </Router>
   );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import frontimg from "../frontimg.jpg";
 
-import { auth } from "./Auth.js";
+import frontimg from "../img/greenery.jpg";
+
 
 class Home extends Component {
   constructor() {
@@ -11,7 +11,6 @@ class Home extends Component {
   }
 
   componentDidMount() {
-      console.log(auth.token);
       const baseURL = process.env.NODE_ENV === "development"
           ? "http://localhost:1337"
           : "https://me-api.linneaolofsson.me";
@@ -26,25 +25,41 @@ class Home extends Component {
 
   render() {
       return (
+          <>
+          <Image />
+
         <div className="fpageDiv">
-            <div className="left">
-            <h1>{this.state.data.h2}</h1>
-            <h4>{this.state.data.h4}</h4>
-            <p>{this.state.data.p1}</p>
-            <p>{this.state.data.p2}</p>
-            <i>{this.state.data.i1}</i>
+            <div className="firstinfo">
+                <h1>{this.state.data.h1}</h1>
+                <i>Din plats att tradea sticklingar på nätet</i>
             </div>
-            <div className="right">
-                <Image />
+            <div className="boxes">
+                <div className="frontBox">
+                    <h4>{this.state.data.headline1}</h4>
+                    <p>{this.state.data.box1}</p>
+                </div>
+                <div className="frontBox">
+                    <h4>{this.state.data.headline2}</h4>
+                    <p>{this.state.data.box2}</p>
+                </div>
+                <div className="frontBox">
+                    <h4>{this.state.data.headline3}</h4>
+                    <p>{this.state.data.box3}</p>
+                </div>
+            </div>
+            <div className="largeFrontBox">
+                <h4>{this.state.data.headline4}</h4>
+                <h5>{this.state.data.box4}</h5>
             </div>
         </div>
+        </>
       );
   }
 }
 
-
 function Image() {
-    return <img src={frontimg} className="frontimg" alt="Sidans skapare i öknen" />;
+    return <img src={frontimg} className="frontimg" alt="Header av en växt" />;
 }
+
 
 export { Home };

@@ -14,7 +14,7 @@ class Profile extends Component {
       super();
       this.state = {
           username: auth.username,
-          balance: auth.balance,
+          balance: parseFloat(auth.balance).toFixed(2),
           amount: "",
           number: "",
           msg: "",

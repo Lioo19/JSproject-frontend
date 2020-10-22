@@ -123,12 +123,6 @@ li a:hover {
     padding-bottom: 1%;
 }
 
-
-.fpageDiv {
-    display: flex;
-    justify-content: space-between;
-}
-
 .left {
     width: 60%;
 }
@@ -141,14 +135,6 @@ li a:hover {
 
 .frontimg {
     width: 100%;
-}
-
- a {
-    color: var(--lightest);
-}
-
- a:visited {
-    color: var(--light);
 }
 
 .loginContent h2 {
@@ -192,7 +178,7 @@ input[type=text] {
     text-align: center;
 }
 
-figure.objectCard {
+.objectCard {
     display: inline-block;
     overflow: hidden;
     background-color: #efefef;
@@ -205,7 +191,7 @@ figure.objectCard {
     transition: box-shadow .15s ease;
 }
 
-figure.objectCard img {
+.objectCard img {
     margin-left: 17.5%;
     margin-top: 5%;
 }
@@ -215,7 +201,7 @@ img.thumb {
     max-height: 200px;
 }
 
-figure p {
+.objectCard p {
     color: var(--darkest);
     margin: 0;
     text-align: center;
@@ -304,11 +290,121 @@ input.saldobutton {
     text-align: center;
 }
 
-@media screen and (max-width: 1000px) {
+/* HOMEPAGE */
+.firstinfo {
+    text-align: center;
+    margin: 2% 0 5% 0;
+}
+
+.firstinfo i {
+    color: var(--lightest);
+}
+
+.boxes {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.frontBox {
+    background-color: var(--darkest);
+    color: var(--lightest);
+    width: 25%;
+    text-align: center;
+    margin-bottom: 5%;
+    border-radius: 5px;
+}
+
+.frontBox h4 {
+    padding: 3% 0 3% 0;
+    margin: 2%;
+}
+
+.frontBox p {
+    padding: 1% 7% 7% 7%;
+    margin: 1%;
+}
+
+.largeFrontBox h4 {
+    padding: 3% 0 1% 0;
+    margin: 2% 0 1% 0 ;
+}
+
+.largeFrontBox h5 {
+    font-size: 3rem;
+    padding: 0 7% 3% 7%;
+    margin: 1% 0 0 0;
+}
+
+.largeFrontBox {
+    display: block;
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+    background-color: var(--darkest);
+    color: var(--lightest);
+    border-radius: 5px;
+}
+
+/* FOOTER */
+
+.footer {
+    background-color: var(--darkest);
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-around;
+    height: 250px;
+    -webkit-box-shadow: 10px 10px 10px 10px rgba(3,61,1,1);
+    -moz-box-shadow: 10px 10px 10px 10px rgba(3,61,1,1);
+    box-shadow: 10px 10px 10px 10px rgba(3,61,1,1);
+}
+
+.footercol {
+    width: 20%;
+    margin-top: 1%;
+}
+
+.footerli1 {
+    font-size: 125%;
+    text-decoration: underline;
+}
+
+.footerli1 li {
+    padding: 2% 0;
+}
+
+.footerli2 {
+    padding: 2% 0;
+}
+
+.footerli2 a,
+.footerli2 a:visited {
+    font-size: 100%;
+    color: var(--lighter);
+    line-height: 1.5;
+}
+
+a {
+   color: var(--lightest);
+}
+
+a:visited {
+   color: var(--light);
+}
+
+.msg {
+    text-align: center;
+}
+
+
+
+/* @media screen and (max-width: 1000px) {
     .fpageDiv {
         flex-direction: column;
     }
     .left {
         width: 80%;
     }
-}
+} */
