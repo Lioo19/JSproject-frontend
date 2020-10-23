@@ -21,7 +21,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && rsync -av build/* deploy@linneaolofsson.me:/var/www/project.linneaolofsson.me/html/",
+    "clean": "rm -rf node_modules package-lock.json",
+    "eslint": "eslint ."
   },
   "eslintConfig": {
     "extends": "react-app"

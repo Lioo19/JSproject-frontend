@@ -49,7 +49,7 @@ h1 {
     text-align: center;
     font-size: 4em;
     font-weight: 100;
-    margin: 0 0 2% 0;
+    margin: 2% 0;
     color: var(--lighter);
 }
 
@@ -66,8 +66,8 @@ h4 {
 }
 
 .logo {
-    color: green;
-    font-size: 400%;
+    color: var(--lighter);
+    font-size: 200%;
     text-decoration: none;
     margin-left: 2%;
     text-transform: uppercase;
@@ -174,7 +174,7 @@ input[type=text] {
 
 .marketContent {
     width: 80%;
-    margin-left: 10%;
+    margin: 2% 0 0 10%;
     display: flex;
     justify-content: space-around;
     align-content: space-around;
@@ -191,10 +191,8 @@ input[type=text] {
     background-color: #efefef;
     width: 300px;
     height: 308px;
-    margin-bottom: 10%;
+    margin: 0 3% 8% 3%;
     text-decoration: none;
-    box-shadow: 0 0 15px 1px #aaa;
-    transition: box-shadow .15s ease;
 }
 
 
@@ -226,15 +224,16 @@ input[type=submit] {
     text-transform: uppercase;
     padding: 1%;
     width: 35%;
-    margin: 0 0 1% 60%;
+    margin: 0 0 1% 50%;
 }
 
 /* PRODUCT */
 
 .productContent {
     width: 80%;
-    margin-left: 10%;
+    margin: 2% 0 0 10%;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-content: space-around;
     flex-wrap: wrap;
@@ -244,25 +243,34 @@ figure.objectCardLarge {
     display: inline-block;
     overflow: hidden;
     background-color: var(--lightest);
-    padding: 5px;
-    margin: 8px;
-    width: 700px;
-    height: 1000px;
+    width: 80%;
     text-decoration: none;
-    box-shadow: 0 0 15px 1px #aaa;
-    transition: box-shadow .15s ease;
-}
-img.thumbLarge {
-    width: 100%;
+    margin-left: 9%;
 }
 
-figure.objectCardLarge img {
-    margin-left: 17.5%;
-    margin-top: 5%;
+.productInfo {
+    margin-left: 10%;
+}
+.productInfo p {
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+.productInfo i {
+    font-weight: 400;
+}
+
+img.thumbLarge {
+    width: 80%;
+    margin-left: 10%;
 }
 
 /*  PROFILE PAGE SETTINGS
 */
+
+.content {
+    margin: 2% 0 0 0;
+}
 
 .profile {
     background-color: var(--darker);
@@ -340,12 +348,11 @@ input.saldobutton {
 }
 
 .frontBox {
-    background-color: var(--darkest);
+    background-color: var(--darker);
     color: var(--lightest);
     width: 25%;
     text-align: center;
     margin-bottom: 5%;
-    border-radius: 5px;
 }
 
 .frontBox h4 {
@@ -374,9 +381,8 @@ input.saldobutton {
     width: 80%;
     margin-left: 10%;
     text-align: center;
-    background-color: var(--darkest);
+    background-color: var(--darker);
     color: var(--lightest);
-    border-radius: 5px;
 }
 
 /* FOOTER */
@@ -384,6 +390,7 @@ input.saldobutton {
 .footer {
     background-color: var(--darkest);
     margin-top: 3%;
+    line-height: 1.8;
     display: flex;
     justify-content: space-around;
     height: 250px;
@@ -395,6 +402,10 @@ input.saldobutton {
 .footercol {
     width: 20%;
     margin-top: 1%;
+}
+
+.footercol:nth-child(1) {
+    margin-left: 15%;
 }
 
 .footerli1 {
@@ -421,9 +432,9 @@ a {
    color: var(--lightest);
 }
 
-a:visited {
+/* a:visited {
    color: var(--light);
-}
+} */
 
 .msg {
     text-align: center;
@@ -433,13 +444,60 @@ a:visited {
     text-align: center;
 }
 
+.msg h4 {
+    text-align: center;
+}
 
 
-/* @media screen and (max-width: 1000px) {
+
+@media screen and (max-width: 1000px) {
     .fpageDiv {
         flex-direction: column;
     }
     .left {
         width: 80%;
     }
-} */
+
+    .footercol:nth-child(1){
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .App {
+        width: 70%;
+        padding: .6em .6em;
+    }
+
+    .navLi {
+        margin: 0 1% 0 2%;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    .frontBox {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .boxes {
+        flex-direction: column;
+    }
+
+    .footer {
+        flex-direction: column;
+        height: 600px;
+    }
+
+    .footercol {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .footercol:first-child {
+        margin-left: 10%;
+    }
+}

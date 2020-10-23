@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-
 import {
   Switch,
   Route,
@@ -15,10 +14,10 @@ import { Product } from "./Product.js";
 
 const baseURL = process.env.NODE_ENV === "development"
     ? "http://localhost:1337/marketplace/"
-    : "https://me-api.linneaolofsson.me/marketplace/";
+    : "https://project-api.linneaolofsson.me/marketplace/";
 
 const socketURL = process.env.NODE_ENV === "development"
-    ? "http://localhost:8300/"
+    ? "http://localhost:8400/"
     : "https://project-socket.linneaolofsson.me";
 
 function Marketplace() {
@@ -91,7 +90,7 @@ class Market extends Component {
       event.preventDefault();
       const baseURL = process.env.NODE_ENV === "development"
           ? `http://localhost:1337/marketplace/buy/${event.target[0].value}`
-          : `https://me-api.linneaolofsson.me/marketplace/buy/${event.target[0].value}`;
+          : `https://project-api.linneaolofsson.me/marketplace/buy/${event.target[0].value}`;
 
       //amount should be set with the socket-value
       let payload={
@@ -113,7 +112,6 @@ class Market extends Component {
           })
           .then(response => response.json())
           .then(data => {
-              console.log(data);
               this.setState({ msg: "Objekt Köpt" });
           })
           .catch((error) => {
@@ -142,13 +140,15 @@ class Market extends Component {
               }
               {
                   auth.token ?
-                  <div>
+                  <div className="center">
+                    <p>För mer info, tryck på produkten</p>
                   </div>
                   :
                   <div className="center">
                     <p>Vill du tradea en stickling? Vänligen
                     <Link to="login"> logga in</Link>
                     </p>
+                    <p>För mer info, tryck på produkten</p>
                   </div>
               }
               <div className={"marketContent"} >

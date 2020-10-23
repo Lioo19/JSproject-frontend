@@ -10,12 +10,12 @@ import { auth } from "./Auth.js";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const socketURL = process.env.NODE_ENV === "development"
-    ? "http://localhost:8300/"
+    ? "http://localhost:8400/"
     : "https://project-socket.linneaolofsson.me";
 
 const baseURL = process.env.NODE_ENV === "development"
     ? "http://localhost:1337/profile/"
-    : "https://me-api.linneaolofsson.me/profile/";
+    : "https://project-api.linneaolofsson.me/profile/";
 
 
 class Profile extends Component {
@@ -61,7 +61,7 @@ class Profile extends Component {
       event.preventDefault();
       const sellURL = process.env.NODE_ENV === "development"
           ? `http://localhost:1337/profile/${this.state.username}/sell`
-          : `https://me-api.linneaolofsson.me/profile/${this.state.username}/sell`;
+          : `https://project-api.linneaolofsson.me/profile/${this.state.username}/sell`;
 
       //amount should be set with the socket-value
       let payload={
@@ -96,7 +96,7 @@ class Profile extends Component {
 
       const baseURL = process.env.NODE_ENV === "development"
           ? `http://localhost:1337/profile/${this.state.username}/addCurrency`
-          : `https://me-api.linneaolofsson.me/profile/${this.state.username}/addCurrency`;
+          : `https://project-api.linneaolofsson.me/profile/${this.state.username}/addCurrency`;
 
       let payload={
           'amount': this.state.amount,

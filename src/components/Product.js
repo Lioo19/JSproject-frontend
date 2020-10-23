@@ -8,10 +8,10 @@ import io from "socket.io-client";
 
 const baseURL = process.env.NODE_ENV === "development"
     ? "http://localhost:1337/marketplace/"
-    : "https://me-api.linneaolofsson.me/marketplace/";
+    : "https://project-api.linneaolofsson.me/marketplace/";
 
 const socketURL = process.env.NODE_ENV === "development"
-    ? "http://localhost:8300/"
+    ? "http://localhost:8400/"
     : "https://project-socket.linneaolofsson.me";
 
 class Product extends Component {
@@ -30,15 +30,13 @@ class Product extends Component {
         data: {
             labels: [],
             datasets: [{
-                label: "hej!",
+                label: "Pris",
                 data: []
             }]
         }
       };
 
       this.socket = io(socketURL);
-
-      this.chartReference = React.createRef();
   }
 
   componentDidMount() {
@@ -86,11 +84,9 @@ class Product extends Component {
   getChartData = (canvas) => {
     const data = this.state.data;
     if (data.datasets) {
-        let colors = ["rgba(187, 2, 30, 1)", "rgba(2, 94, 187, 1)", "rgba(220, 227, 28, 1)"];
-        let borderColors = ["rgba(0, 0, 0, 1)", "rgba(0, 0, 0, 1)", "rgba(0, 0, 0, 1)"]
         data.datasets.forEach((set, i) => {
-            set.backgroundColor = this.setGradientColor(canvas, colors[i]);
-            set.borderColor = this.setGradientColor(canvas, borderColors[i]);
+            set.backgroundColor = this.setGradientColor(canvas, "rgba(187, 2, 30, 1)");
+            set.borderColor = this.setGradientColor(canvas, "rgba(0, 0, 0, 1)");
             set.borderWidth = 2;
         })
     }
@@ -104,44 +100,42 @@ class Product extends Component {
       return (
 
           <>
-          {
-              console.log(this.state.data.datasets[0].data)
-          }
           <div className={"productContent"} >
               <h1>{object.name}</h1>
+              <figure>
+                  <div className="imgdiv">
+                      {object.img ?
+                          <img
+                              src={require(`../img/${object.img}`)}
+                              className={"thumbLarge"}
+                              alt={`${object.name}`}/>
+                          :
+                          <p>no-img</p>
+                      }
+                  </div>
+                  <div className="productInfo">
+                      <p>Namn: <i>{object.name}</i></p>
+                      <p>Latinskt namn: <i>{object.latin}</i></p>
+                      <p>Objektsnummer: <i>{object.nr}</i></p>
+                  </div>
+              </figure>
               <figure className={"objectCardLarge"}>
-              <div className="imgdiv">
-                  {object.img ?
-                      <img
-                          src={require(`../img/${object.img}`)}
-                          className={"thumbLarge"}
-                          alt={`${object.name}`}/>
-                      :
-                      <p>no-img</p>
-                  }
+                  <div>
+
                   <Line
                       data={this.getChartData}
                       options= {{
                       title: {
                           display: true,
-                          text: "Hej",
+                          text: "Prisutveckling",
                           fontSize: 18,
                           //maintainAspectRatio: false,
                           responsive: true
                       },
                       }}
                       />
-              </div>
-                  <p>Namn: {object.name}</p>
-                  <p>Latinskt namn: {object.latin}</p>
-                  <p>Objektsnummer: {object.nr}</p>
+                  </div>
               </figure>
-              {
-                  auth.token ?
-                  <p>{`Inloggad`}</p>
-                  :
-                  <p>{`Inte inloggad`}</p>
-              }
           </div>
           </>
       )

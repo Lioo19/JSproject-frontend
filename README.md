@@ -3,66 +3,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+### `npm install`
+To install npm and be able to run the backend
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Projekt-Frontend
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Det självklara valet för byggandet av denna applikation var en front-end baserad på React. React är ett komponent-drivet bibliotek/ramverk som tillåter användaren en stor portion flexibilitet. Komponenterna som tillsammans bygger upp User Interfacet kan återanvändas flera gånger och på ett smidigt sätt samarbeta med varandra. React är ett av de större biblioteken för Javascript och är frekvent använt.
+Det finns många olika verktyg att koppla på till React och för att på ett smidigt sätt kunna visa grafer har jag valt att inkorporera ChartJs i projektet, vilket är ett praktiskt verktyg för att kunna skapa grafer av den data som ges. Valet föll på ChartJs då alternativet Rickshaw inte verkade leva upp till förväntningarna enligt hörsägen. Dessutom har ChartJs en bra dokumentation vilket gjorde den förhållandevis enkel att inkludera i React.
+För att routeingen ska fungera som tänkt har jag använt mig att React Router. Utöver detta har jag även valt att använda ikoner från Material Icons, vilket fungerar väl för oss eftersom vår budget är begränsad (och dessa är gratis).
 
-### `npm test`
+Sidan har, á la react, en rätt enkel uppbyggnad och baserar sig på att man som användare loggar in för att kunna använda sidan till fullo. Inloggnings- och registreringsfunktionerna pratar med det API och dess databas som skapades som del ett i detta projekt, projekt-apiet. Väl inloggad kan användaren få en överblick över de produkter som erbjuds att handla med på Marknads-sidan, där man även får en realtidsuppdatering, vilken hämtas med hjälp av microservicen. Om man är köpsugen trycker man direkt på knappen för att handla, annars kan man få mer information genom att trycka sig vidare in till produktsidan. Produktsidan ger dig allt du behöver veta inför din trade och du får dessutom en realtidsuppdaterad graf (skapad med ChartsJs) som visar dig prisutvecklingen för produkten.
+På din profilsida går det att hitta all information om ditt konto, bland annat hur mycket du har kvar att handla för, vilka sticklingar du har köpt och till vilket pris. Om du känner för att göra dig av med de produkter du införskaffat är det enkelt att sälja dem genom att trycka på sälj-knappen.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Sidan är en prototyp och saknar vissa mindre delar för att göra användbarheten riktigt bra, något som skulle få ett fokus vid fortsatt samarbete. 

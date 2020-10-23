@@ -18,7 +18,7 @@ class Register extends Component {
       event.preventDefault();
       const baseURL = process.env.NODE_ENV === "development"
           ? "http://localhost:1337/register"
-          : "https://me-api.linneaolofsson.me/register";
+          : "https://project-api.linneaolofsson.me/register";
 
       let payload={
           'email': this.state.email,

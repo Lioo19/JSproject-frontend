@@ -22,7 +22,7 @@ class Login extends Component {
       event.preventDefault();
       const baseURL = process.env.NODE_ENV === "development"
           ? "http://localhost:1337/login"
-          : "https://me-api.linneaolofsson.me/login";
+          : "https://project-api.linneaolofsson.me/login";
 
       let payload={
           'email': this.state.email,
